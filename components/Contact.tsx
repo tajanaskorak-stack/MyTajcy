@@ -1,0 +1,121 @@
+'use client';
+
+import React, { useState } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
+
+export default function Contact() {
+  const { t, language } = useLanguage();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Simulate form submission
+    setTimeout(() => {
+      alert(
+        language === 'hr'
+          ? 'Hvala vam na poruci! Javit ću vam se uskoro.'
+          : 'Thank you for your message! I will get back to you soon.'
+      );
+      setFormData({ name: '', email: '', message: '' });
+      setIsSubmitting(false);
+    }, 500);
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  return (
+    <section id="contact" className="py-20 md:py-32 bg-gradient-to-b from-indigo-50 via-purple-50 to-pink-50 dark:from-black dark:via-gray-900 dark:to-black">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+            <span className="bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 bg-clip-text text-transparent">
+              {t.contact.title}
+            </span>
+          </h2>
+          <div className="w-20 h-1 bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 mx-auto rounded-full"></div>
+        </div>
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white dark:bg-gray-900 rounded-2xl shadow-sm p-8 md:p-10 space-y-6 border border-gray-100 dark:border-gray-800"
+        >
+          <div>
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              {t.contact.form.name}
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all duration-200 outline-none bg-gray-50/50 dark:bg-gray-800 dark:text-gray-100"
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              {t.contact.form.email}
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all duration-200 outline-none bg-gray-50/50 dark:bg-gray-800 dark:text-gray-100"
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="message"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              {t.contact.form.message}
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows={6}
+              required
+              value={formData.message}
+              onChange={handleChange}
+              className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all duration-200 outline-none resize-y min-h-[120px] bg-gray-50/50 dark:bg-gray-800 dark:text-gray-100"
+            />
+          </div>
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full md:w-auto px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl hover:shadow-pink-500/50 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+          >
+            {isSubmitting
+              ? language === 'hr'
+                ? 'Šalje se...'
+                : 'Sending...'
+              : t.contact.form.submit}
+          </button>
+        </form>
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="hr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyTajcy - Helping your ideas shine – with a smile.</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <h1>MyTajcy</h1>
+        </div>
+        <nav class="nav">
+          <a href="#about" data-i18n="nav.about">O meni</a>
+          <a href="#services" data-i18n="nav.services">Usluge</a>
+          <a href="#portfolio" data-i18n="nav.portfolio">Reference</a>
+          <a href="#contact" data-i18n="nav.contact">Kontakt</a>
+        </nav>
+        <div class="language-switcher">
+          <button class="lang-btn active" data-lang="hr">HR</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h2 class="hero-title" data-i18n="hero.title">Helping your ideas shine – with a smile.</h2>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">Modern web solutions, business automation, and creative design</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-i18n="about.title">O meni</h2>
+      </div>
+      <div class="about-content">
+        <p data-i18n="about.text1"></p>
+        <p data-i18n="about.text2"></p>
+        <p data-i18n="about.text3"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-i18n="services.title">Usluge</h2>
+      </div>
+      
+      <div class="services-grid">
+        <!-- Website Development -->
+        <div class="service-category">
+          <h3 data-i18n="services.webdev.title">🌐 IZRADA WEB STRANICA</h3>
+          <p class="service-note" data-i18n="services.webdev.note">BESPLATNA IZRADA PRVOG NACRTA WEB STRANICE. KONKAKTIRAJTE ME.</p>
+          
+          <div class="service-item">
+            <h4 data-i18n="services.webdev.basic.title">✨ BASIC WEB – Jednostrana web stranica</h4>
+            <p data-i18n="services.webdev.basic.desc">Idealno za osobni brend, CV, landing page ili jednu uslugu.</p>
+            <ul data-i18n="services.webdev.basic.features"></ul>
+            <p class="price" data-i18n="services.webdev.basic.price">💰 Cijena: od 200 €</p>
+          </div>
+
+          <div class="service-item">
+            <h4 data-i18n="services.webdev.standard.title">🚀 STANDARD WEB – Višestranična web stranica</h4>
+            <p data-i18n="services.webdev.standard.desc">Za male i srednje poduzetnike koji žele profesionalnu online prisutnost.</p>
+            <ul data-i18n="services.webdev.standard.features"></ul>
+            <p class="price" data-i18n="services.webdev.standard.price">💰 Cijena: od 400 €</p>
+          </div>
+
+          <div class="service-item">
+            <h4 data-i18n="services.webdev.premium.title">💎 PREMIUM WEB – Kompleksna web rješenja</h4>
+            <p data-i18n="services.webdev.premium.desc">Za brendove koji žele rasti i istaknuti se.</p>
+            <ul data-i18n="services.webdev.premium.features"></ul>
+            <p class="price" data-i18n="services.webdev.premium.price">💰 Cijena: 800 €</p>
+          </div>
+        </div>
+
+        <!-- Website Maintenance -->
+        <div class="service-category">
+          <div class="service-item">
+            <h4 data-i18n="services.maintenance.title">🔧 ODRŽAVANJE WEB STRANICA</h4>
+            <ul data-i18n="services.maintenance.features"></ul>
+            <p class="price" data-i18n="services.maintenance.price">💰 Cijena: od 80 € / mjesečna podrška , 20 € / jednokratna izmjena</p>
+          </div>
+        </div>
+
+        <!-- Online Offers -->
+        <div class="service-category">
+          <div class="service-item">
+            <h4 data-i18n="services.offers.title">📄 IZRADA ONLINE PONUDA ZA VAŠE KLIJENTE</h4>
+            <p data-i18n="services.offers.desc"></p>
+            <p class="price" data-i18n="services.offers.price">💰 Cijena: od 80 € po ponudi</p>
+          </div>
+
+          <div class="service-item">
+            <h4 data-i18n="services.booking.title">➕ Izrada rezervacijskih obrazaca</h4>
+            <p data-i18n="services.booking.desc"></p>
+            <p class="price" data-i18n="services.booking.price">Cijena: 100 €</p>
+          </div>
+        </div>
+
+        <!-- Business Automation -->
+        <div class="service-category">
+          <div class="service-item">
+            <h4 data-i18n="services.automation.title">🔹 AUTOMATIZACIJA POSLOVNIH PROCESA:</h4>
+            <p data-i18n="services.automation.desc"></p>
+            <ul data-i18n="services.automation.features"></ul>
+            <div class="price" data-i18n="services.automation.price"></div>
+          </div>
+        </div>
+
+        <!-- Social Media Management -->
+        <div class="service-category">
+          <h3 data-i18n="services.social.title">📱 ODRŽAVANJE DRUŠTVENIH MREŽA</h3>
+          
+          <div class="service-item">
+            <h4 data-i18n="services.social.mini.title">🌱 MINI paket</h4>
+            <ul data-i18n="services.social.mini.features"></ul>
+            <p class="price" data-i18n="services.social.mini.price">💰 Cijena: 120 € / mjesečno</p>
+          </div>
+
+          <div class="service-item">
+            <h4 data-i18n="services.social.standard.title">⭐ STANDARD paket</h4>
+            <ul data-i18n="services.social.standard.features"></ul>
+            <p class="price" data-i18n="services.social.standard.price">💰 Cijena: 220 € / mjesečno</p>
+          </div>
+
+          <div class="service-item">
+            <h4 data-i18n="services.social.premium.title">👑 PREMIUM paket</h4>
+            <ul data-i18n="services.social.premium.features"></ul>
+            <p class="price" data-i18n="services.social.premium.price">💰 Cijena: 350 € / mjesečno</p>
+          </div>
+        </div>
+
+        <!-- Logo & Visual Identity -->
+        <div class="service-category">
+          <h3 data-i18n="services.logo.title">🎨 IZRADA LOGOTIPA I VIZUALNOG IDENTITETA</h3>
+          <div class="service-item bundle">
+            <h4 data-i18n="services.logo.bundle.title">➕ LOGO + WEB POPUST (Bundle ponuda)</h4>
+            <div data-i18n="services.logo.bundle.desc"></div>
+          </div>
+
+          <div class="service-item">
+            <h4 data-i18n="services.logo.basic.title">✏️ Logo Basic</h4>
+            <ul data-i18n="services.logo.basic.features"></ul>
+            <p class="price" data-i18n="services.logo.basic.price">💰 Cijena: 50 €</p>
+          </div>
+
+          <div class="service-item">
+            <h4 data-i18n="services.logo.standard.title">⭐ Logo Standard</h4>
+            <ul data-i18n="services.logo.standard.features"></ul>
+            <p class="price" data-i18n="services.logo.standard.price">💰 Cijena: 120 €</p>
+          </div>
+
+          <div class="service-item">
+            <h4 data-i18n="services.logo.premium.title">👑 Logo Premium</h4>
+            <ul data-i18n="services.logo.premium.features"></ul>
+            <p class="price" data-i18n="services.logo.premium.price">💰 Cijena: 200 €</p>
+          </div>
+        </div>
+
+        <!-- Newsletters -->
+        <div class="service-category">
+          <h3 data-i18n="services.newsletter.title">💌 PERSONALIZIRANI NEWSLETTERI</h3>
+          
+          <div class="service-item">
+            <h4 data-i18n="services.newsletter.mini.title">📬 MINI</h4>
+            <ul data-i18n="services.newsletter.mini.features"></ul>
+            <p class="price" data-i18n="services.newsletter.mini.price">💰 Cijena: 60 € / mjesečno</p>
+          </div>
+
+          <div class="service-item">
+            <h4 data-i18n="services.newsletter.standard.title">📬 STANDARD</h4>
+            <ul data-i18n="services.newsletter.standard.features"></ul>
+            <p class="price" data-i18n="services.newsletter.standard.price">💰 Cijena: 120 € / mjesečno</p>
+          </div>
+
+          <div class="service-item">
+            <h4 data-i18n="services.newsletter.premium.title">📬 PREMIUM</h4>
+            <ul data-i18n="services.newsletter.premium.features"></ul>
+            <p class="price" data-i18n="services.newsletter.premium.price">💰 Cijena: 240 € / mjesečno</p>
+          </div>
+        </div>
+
+        <!-- Custom Requests -->
+        <div class="service-category">
+          <div class="service-item">
+            <h4 data-i18n="services.custom.title">✨ PERSONALIZIRANI UPITI</h4>
+            <p data-i18n="services.custom.desc"></p>
+            <p class="price" data-i18n="services.custom.price">💰 Cijena: po dogovoru</p>
+            <p data-i18n="services.custom.footer"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="portfolio">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-i18n="portfolio.title">Reference</h2>
+      </div>
+      <div class="portfolio-content">
+        <p data-i18n="portfolio.text">Uskoro će biti dostupne reference projekata.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-i18n="contact.title">Kontakt</h2>
+      </div>
+      <div class="contact-content">
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="name" data-i18n="contact.form.name">Ime</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email" data-i18n="contact.form.email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="message" data-i18n="contact.form.message">Poruka</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+          </div>
+          <button type="submit" class="btn-submit" data-i18n="contact.form.submit">Pošalji</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p data-i18n="footer.text">&copy; 2024 MyTajcy. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
