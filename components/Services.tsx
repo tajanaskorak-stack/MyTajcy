@@ -63,7 +63,10 @@ const IconCustom = () => (
   </svg>
 );
 
-// Price badge: circle with € + number only (like reference image)
+// Price badge: circle with € + number only (like reference image).
+// Wrapper aligns all prices in the same column (fixed-width right-aligned cell).
+const PRICE_COLUMN_MIN_WIDTH = '10rem'; // ~160px: fits "149 / 49" + € circle
+
 const PriceBadge = ({
   amount,
   showEuroCircle = true,
@@ -83,6 +86,16 @@ const PriceBadge = ({
         €
       </div>
     )}
+  </div>
+);
+
+// Wrapper so every price row uses the same horizontal column (right-aligned in fixed-width cell).
+const PriceCell = ({ children }: { children: React.ReactNode }) => (
+  <div
+    className="flex flex-shrink-0 justify-end"
+    style={{ minWidth: PRICE_COLUMN_MIN_WIDTH }}
+  >
+    {children}
   </div>
 );
 
@@ -275,10 +288,12 @@ export default function Services() {
               {/* Basic Web */}
               <div className="pb-8 border-b border-gray-100 last:border-0">
                 <div className="flex items-start justify-between gap-4 mb-3">
-                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100">
+                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
                     {t.services.webdev.basic.title}
                   </h4>
-                  <PriceBadge amount={t.services.webdev.basic.priceShort} />
+                  <PriceCell>
+                    <PriceBadge amount={t.services.webdev.basic.priceShort} />
+                  </PriceCell>
                 </div>
                 <p className="text-gray-600 dark:text-gray-400 mb-4 text-base md:text-lg font-light">{t.services.webdev.basic.desc}</p>
                 <ul className="list-none space-y-2.5 mb-5">
@@ -294,10 +309,12 @@ export default function Services() {
               {/* Standard Web */}
               <div className="pb-8 border-b border-gray-100 last:border-0">
                 <div className="flex items-start justify-between gap-4 mb-3">
-                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100">
+                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
                     {t.services.webdev.standard.title}
                   </h4>
-                  <PriceBadge amount={t.services.webdev.standard.priceShort} />
+                  <PriceCell>
+                    <PriceBadge amount={t.services.webdev.standard.priceShort} />
+                  </PriceCell>
                 </div>
                 <p className="text-gray-600 dark:text-gray-400 mb-4 text-base md:text-lg font-light">{t.services.webdev.standard.desc}</p>
                 <ul className="list-none space-y-2.5 mb-5">
@@ -313,10 +330,12 @@ export default function Services() {
               {/* Premium Web */}
               <div>
                 <div className="flex items-start justify-between gap-4 mb-3">
-                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100">
+                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
                     {t.services.webdev.premium.title}
                   </h4>
-                  <PriceBadge amount={t.services.webdev.premium.priceShort} />
+                  <PriceCell>
+                    <PriceBadge amount={t.services.webdev.premium.priceShort} />
+                  </PriceCell>
                 </div>
                 <p className="text-gray-600 dark:text-gray-400 mb-4 text-base md:text-lg font-light">{t.services.webdev.premium.desc}</p>
                 <ul className="list-none space-y-2.5 mb-5">
@@ -337,10 +356,12 @@ export default function Services() {
             className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 md:p-10 hover:shadow-2xl transition-all duration-300 border-2 border-transparent bg-gradient-to-br from-white to-purple-50/30 dark:from-gray-900 dark:to-gray-800 hover:border-purple-200 dark:hover:border-gray-600 scroll-mt-8"
           >
             <div className="flex items-start justify-between gap-4 mb-4">
-              <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100">
+              <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
                 {t.services.maintenance.title}
               </h4>
-              <PriceBadge amount={t.services.maintenance.priceShort} />
+              <PriceCell>
+                <PriceBadge amount={t.services.maintenance.priceShort} />
+              </PriceCell>
             </div>
             <ul className="list-none space-y-2.5 mb-5">
               {t.services.maintenance.features.map((feature, index) => (
@@ -359,21 +380,25 @@ export default function Services() {
           >
             <div className="space-y-6">
               <div className="pb-8 border-b border-gray-100">
-                <div className="flex items-start justify-between gap-4 mb-4">
-                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100">
-                    {t.services.offers.title}
-                  </h4>
+<div className="flex items-start justify-between gap-4 mb-4">
+                <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
+                  {t.services.offers.title}
+                </h4>
+                <PriceCell>
                   <PriceBadge amount={t.services.offers.priceShort} />
-                </div>
+                </PriceCell>
+              </div>
                 <p className="text-gray-600 dark:text-gray-400 mb-5 text-base md:text-lg font-light">{t.services.offers.desc}</p>
               </div>
               <div>
-                <div className="flex items-start justify-between gap-4 mb-4">
-                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100">
-                    {t.services.booking.title}
-                  </h4>
+<div className="flex items-start justify-between gap-4 mb-4">
+                <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
+                  {t.services.booking.title}
+                </h4>
+                <PriceCell>
                   <PriceBadge amount={t.services.booking.priceShort} />
-                </div>
+                </PriceCell>
+              </div>
                 <p className="text-gray-600 dark:text-gray-400 mb-5 text-base md:text-lg font-light">{t.services.booking.desc}</p>
               </div>
             </div>
@@ -385,10 +410,12 @@ export default function Services() {
             className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 md:p-10 hover:shadow-2xl transition-all duration-300 border-2 border-transparent bg-gradient-to-br from-white to-purple-50/30 dark:from-gray-900 dark:to-gray-800 hover:border-purple-200 dark:hover:border-gray-600 scroll-mt-8"
           >
             <div className="flex items-start justify-between gap-4 mb-4">
-              <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100">
+              <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
                 {t.services.automation.title}
               </h4>
-              <PriceBadge amount={t.services.automation.priceShort} />
+              <PriceCell>
+                <PriceBadge amount={t.services.automation.priceShort} />
+              </PriceCell>
             </div>
             <p className="text-gray-600 dark:text-gray-400 mb-5 text-base md:text-lg font-light">{t.services.automation.desc}</p>
             <ul className="list-none space-y-2.5 mb-5">
@@ -414,10 +441,12 @@ export default function Services() {
             <div className="space-y-8">
               <div className="pb-8 border-b border-gray-100">
                 <div className="flex items-start justify-between gap-4 mb-4">
-                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100">
+                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
                     {`${t.services.social.sectionTitle || 'SOCIAL MEDIA'} ${t.services.social.mini.title}`}
                   </h4>
-                  <PriceBadge amount={t.services.social.mini.priceShort} />
+                  <PriceCell>
+                    <PriceBadge amount={t.services.social.mini.priceShort} />
+                  </PriceCell>
                 </div>
                 <ul className="list-none space-y-2.5 mb-5">
                   {t.services.social.mini.features.map((feature, index) => (
@@ -430,10 +459,12 @@ export default function Services() {
               </div>
               <div className="pb-8 border-b border-gray-100">
                 <div className="flex items-start justify-between gap-4 mb-4">
-                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100">
+                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
                     {`${t.services.social.sectionTitle || 'SOCIAL MEDIA'} ${t.services.social.standard.title}`}
                   </h4>
-                  <PriceBadge amount={t.services.social.standard.priceShort} />
+                  <PriceCell>
+                    <PriceBadge amount={t.services.social.standard.priceShort} />
+                  </PriceCell>
                 </div>
                 <ul className="list-none space-y-2.5 mb-5">
                   {t.services.social.standard.features.map((feature, index) => (
@@ -446,10 +477,12 @@ export default function Services() {
               </div>
               <div>
                 <div className="flex items-start justify-between gap-4 mb-4">
-                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100">
+                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
                     {`${t.services.social.sectionTitle || 'SOCIAL MEDIA'} ${t.services.social.premium.title}`}
                   </h4>
-                  <PriceBadge amount={t.services.social.premium.priceShort} />
+                  <PriceCell>
+                    <PriceBadge amount={t.services.social.premium.priceShort} />
+                  </PriceCell>
                 </div>
                 <ul className="list-none space-y-2.5 mb-5">
                   {t.services.social.premium.features.map((feature, index) => (
@@ -475,12 +508,14 @@ export default function Services() {
             </div>
             <div className="space-y-8">
               <div className="pb-8 border-b border-gray-100">
-                <div className="flex items-start justify-between gap-4 mb-4">
-                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100">
-                    {t.services.newsletter.mini.title}
-                  </h4>
+<div className="flex items-start justify-between gap-4 mb-4">
+                <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
+                  {t.services.newsletter.mini.title}
+                </h4>
+                <PriceCell>
                   <PriceBadge amount={t.services.newsletter.mini.priceShort} />
-                </div>
+                </PriceCell>
+              </div>
                 <ul className="list-none space-y-2.5 mb-5">
                   {t.services.newsletter.mini.features.map((feature, index) => (
                     <li key={index} className="flex items-start">
@@ -491,12 +526,14 @@ export default function Services() {
                 </ul>
               </div>
               <div className="pb-8 border-b border-gray-100">
-                <div className="flex items-start justify-between gap-4 mb-4">
-                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100">
-                    {t.services.newsletter.standard.title}
-                  </h4>
+<div className="flex items-start justify-between gap-4 mb-4">
+                <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
+                  {t.services.newsletter.standard.title}
+                </h4>
+                <PriceCell>
                   <PriceBadge amount={t.services.newsletter.standard.priceShort} />
-                </div>
+                </PriceCell>
+              </div>
                 <ul className="list-none space-y-2.5 mb-5">
                   {t.services.newsletter.standard.features.map((feature, index) => (
                     <li key={index} className="flex items-start">
@@ -507,12 +544,14 @@ export default function Services() {
                 </ul>
               </div>
               <div>
-                <div className="flex items-start justify-between gap-4 mb-4">
-                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100">
-                    {t.services.newsletter.premium.title}
-                  </h4>
+<div className="flex items-start justify-between gap-4 mb-4">
+                <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
+                  {t.services.newsletter.premium.title}
+                </h4>
+                <PriceCell>
                   <PriceBadge amount={t.services.newsletter.premium.priceShort} />
-                </div>
+                </PriceCell>
+              </div>
                 <ul className="list-none space-y-2.5 mb-5">
                   {t.services.newsletter.premium.features.map((feature, index) => (
                     <li key={index} className="flex items-start">
@@ -531,10 +570,12 @@ export default function Services() {
             className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 md:p-10 hover:shadow-2xl transition-all duration-300 border-2 border-transparent bg-gradient-to-br from-white to-purple-50/30 dark:from-gray-900 dark:to-gray-800 hover:border-purple-200 dark:hover:border-gray-600 scroll-mt-8"
           >
             <div className="flex items-start justify-between gap-4 mb-4">
-              <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100">
+              <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
                 {t.services.custom.title}
               </h4>
-              <PriceBadge amount={t.services.custom.priceShort} showEuroCircle={false} />
+              <PriceCell>
+                <PriceBadge amount={t.services.custom.priceShort} showEuroCircle={false} />
+              </PriceCell>
             </div>
             <p className="text-gray-600 dark:text-gray-400 mb-5 text-base md:text-lg font-light">{t.services.custom.desc}</p>
             <p className="text-gray-600 dark:text-gray-400 font-light">{t.services.custom.footer}</p>

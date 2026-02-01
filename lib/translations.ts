@@ -18,7 +18,7 @@ export const translations = {
       text2:
         'Nakon šest godina iskustva u prodaji, rad s klijentima za mene je mnogo više od samog posla — to je zajedničko putovanje. Volim slušati, razumjeti ideje i zajedno graditi rješenja koja imaju smisla i trajnu vrijednost.',
       text3:
-        'Izvan profesionalnog života, slobodno vrijeme provodim putovajući, a neki do najdražih hobija su mi planinarenje, kampiranje i skijanje.',
+        'Izvan profesionalnog života, slobodno vrijeme provodim putovajući a neki od najdražih hobija su mi planinarenje, kampiranje i skijanje.',
     },
     services: {
       title: 'Usluge',

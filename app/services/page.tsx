@@ -32,6 +32,9 @@ function ServiceCard({
   onToggle: () => void;
   gradient: string;
 }) {
+  // Fixed-width price column so all cards align vertically (one below the other)
+  const priceColumnMinWidth = '10rem';
+
   return (
     <div
       className="group relative overflow-hidden rounded-2xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 transition-all duration-300 hover:border-purple-400 dark:hover:border-purple-500 hover:shadow-xl hover:shadow-purple-500/10"
@@ -39,12 +42,15 @@ function ServiceCard({
     >
       <button
         onClick={onToggle}
-        className="w-full text-left px-6 py-5 flex items-center justify-between gap-4"
+        className="w-full text-left px-6 py-5 flex items-center gap-4"
       >
-        <span className="font-semibold text-xl text-gray-900 dark:text-gray-100 line-clamp-2 uppercase">
+        <span className="font-semibold text-xl text-gray-900 dark:text-gray-100 line-clamp-2 uppercase min-w-0 flex-1">
           {title}
         </span>
-        <div className="flex items-center gap-2 shrink-0">
+        <div
+          className="flex items-center justify-end gap-2 shrink-0"
+          style={{ minWidth: priceColumnMinWidth }}
+        >
           {(() => {
             const num = (priceShort ?? price).match(/\d+/)?.[0];
             return num ? (
