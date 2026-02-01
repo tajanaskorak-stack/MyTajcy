@@ -18,8 +18,7 @@ export default function Hero() {
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="max-w-4xl mx-auto">
           {/* Premium Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-gray-800 dark:to-gray-800 border border-indigo-300 dark:border-gray-600 rounded-full">
-            <span className="text-lg">✨</span>
+          <div className="inline-flex items-center px-4 py-2 mb-8 bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-gray-800 dark:to-gray-800 border border-indigo-300 dark:border-gray-600 rounded-full">
             <span className="text-sm font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
               Premium Web Solutions
             </span>

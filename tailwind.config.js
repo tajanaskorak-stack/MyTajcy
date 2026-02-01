@@ -39,6 +39,7 @@ module.exports = {
         sans: ['var(--font-montserrat)', 'Montserrat', 'system-ui', 'sans-serif'],
         display: ['var(--font-montserrat)', 'Montserrat', 'system-ui', 'sans-serif'],
         title: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
+        signature: ['var(--font-signature)', 'Sacramento', 'cursive'],
       },
       fontSize: {
         'display': ['clamp(2.5rem, 5vw, 4rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }],

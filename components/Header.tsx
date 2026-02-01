@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
+import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Language } from '@/lib/translations';
 
@@ -32,30 +33,29 @@ export default function Header() {
   }, []);
 
   const services = [
-    { id: 'webdev', icon: '🌐', title: t.services.webdev.title.replace('🌐 ', '') },
-    { id: 'maintenance', icon: '🔧', title: t.services.maintenance.title.replace('🔧 ', '') },
-    { id: 'offers', icon: '📄', title: t.services.offers.title.replace('📄 ', '') },
-    { id: 'booking', icon: '➕', title: t.services.booking.title.replace('➕ ', '') },
-    { id: 'automation', icon: '🔹', title: t.services.automation.title.replace('🔹 ', '') },
-    { id: 'social', icon: '📱', title: t.services.social.title.replace('📱 ', '') },
-    { id: 'logo', icon: '🎨', title: t.services.logo.title.replace('🎨 ', '') },
-    { id: 'newsletter', icon: '💌', title: t.services.newsletter.title.replace('💌 ', '') },
-    { id: 'custom', icon: '✨', title: t.services.custom.title.replace('✨ ', '') },
+    { id: 'webdev', icon: '•', title: t.services.webdev.title },
+    { id: 'maintenance', icon: '•', title: t.services.maintenance.title },
+    { id: 'offers', icon: '•', title: t.services.offers.title },
+    { id: 'booking', icon: '•', title: t.services.booking.title },
+    { id: 'automation', icon: '•', title: t.services.automation.title },
+    { id: 'social', icon: '•', title: t.services.social.title },
+    { id: 'newsletter', icon: '•', title: t.services.newsletter.title },
+    { id: 'custom', icon: '•', title: t.services.custom.title },
   ];
 
   return (
     <header className="sticky top-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 md:h-24">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            {/* Site title – Inter font (Montserrat used everywhere else) */}
-            <h1 className="font-title text-2xl md:text-3xl font-bold tracking-tight">
-              <span className="bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 bg-clip-text text-transparent">
-                MyTajcy
-              </span>
-            </h1>
-          </div>
+          {/* Logo – modern signature style, slightly larger */}
+          <Link
+            href="/"
+            className="flex-shrink-0 font-signature text-2xl md:text-3xl font-normal tracking-[0.02em] focus:outline-none focus:ring-2 focus:ring-purple-500 rounded-lg"
+          >
+            <span className="bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 bg-clip-text text-transparent">
+              MyTajcy
+            </span>
+          </Link>
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-10 flex-1 justify-center">
@@ -124,6 +124,14 @@ export default function Header() {
                 </div>
               )}
             </div>
+
+            <Link
+              href="/services"
+              className="text-gray-600 dark:text-gray-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 transition-all duration-200 font-medium text-[15px] relative group"
+            >
+              {t.nav.pricing}
+              <span className="absolute bottom-0 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
+            </Link>
 
             <a
               href="#portfolio"
@@ -220,13 +228,19 @@ export default function Header() {
               )}
             </div>
 
+            <Link
+              href="/services"
+              className="text-gray-700 dark:text-gray-300 hover:text-secondary transition-colors duration-200 font-medium text-sm py-1"
+            >
+              {t.nav.pricing}
+            </Link>
             <a
               href="#portfolio"
               onClick={(e) => {
                 e.preventDefault();
                 scrollToSection('portfolio');
               }}
-              className="text-gray-700 hover:text-secondary transition-colors duration-200 font-medium text-sm py-1"
+              className="text-gray-700 dark:text-gray-300 hover:text-secondary transition-colors duration-200 font-medium text-sm py-1"
             >
               {t.nav.portfolio}
             </a>
@@ -236,7 +250,7 @@ export default function Header() {
                 e.preventDefault();
                 scrollToSection('contact');
               }}
-              className="text-gray-700 hover:text-secondary transition-colors duration-200 font-medium text-sm py-1"
+              className="text-gray-700 dark:text-gray-300 hover:text-secondary transition-colors duration-200 font-medium text-sm py-1"
             >
               {t.nav.contact}
             </a>
