@@ -4,6 +4,9 @@ import React from 'react';
 import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
 
+// Bundled image so it loads on Vercel (avoids public folder path issues)
+import profileImg from '@/app/assets/profile.png';
+
 export default function About() {
   const { t } = useLanguage();
 
@@ -27,7 +30,7 @@ export default function About() {
               <div className="w-full h-full rounded-full overflow-hidden bg-white dark:bg-gray-900 p-1">
                 <div className="relative w-full h-full rounded-full overflow-hidden">
                   <Image
-                    src="/profile.png"
+                    src={profileImg}
                     alt="Profile"
                     fill
                     className="object-cover"
