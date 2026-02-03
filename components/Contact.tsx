@@ -2,12 +2,15 @@
 
 import React, { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { countryCallingCodes } from '@/lib/countryCallingCodes';
 
 export default function Contact() {
   const { t, language } = useLanguage();
   const [formData, setFormData] = useState({
-    name: '',
+    fullName: '',
     email: '',
+    phoneCountryCode: '+385',
+    phoneNumber: '',
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -23,13 +26,19 @@ export default function Contact() {
           ? 'Hvala vam na poruci! Javit ću vam se uskoro.'
           : 'Thank you for your message! I will get back to you soon.'
       );
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({
+        fullName: '',
+        email: '',
+        phoneCountryCode: '+385',
+        phoneNumber: '',
+        message: '',
+      });
       setIsSubmitting(false);
     }, 500);
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     setFormData({
       ...formData,
@@ -54,17 +63,17 @@ export default function Contact() {
         >
           <div>
             <label
-              htmlFor="name"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              htmlFor="fullName"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
             >
-              {t.contact.form.name}
+              {t.contact.form.fullName}
             </label>
             <input
               type="text"
-              id="name"
-              name="name"
+              id="fullName"
+              name="fullName"
               required
-              value={formData.name}
+              value={formData.fullName}
               onChange={handleChange}
               className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all duration-200 outline-none bg-gray-50/50 dark:bg-gray-800 dark:text-gray-100"
             />
@@ -72,7 +81,7 @@ export default function Contact() {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
             >
               {t.contact.form.email}
             </label>
@@ -86,10 +95,46 @@ export default function Contact() {
               className="w-full px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all duration-200 outline-none bg-gray-50/50 dark:bg-gray-800 dark:text-gray-100"
             />
           </div>
+          {/* Phone with worldwide country calling codes */}
+          <div>
+            <label
+              htmlFor="phoneNumber"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+            >
+              {t.contact.form.phone}
+            </label>
+            <div className="flex gap-2">
+              <select
+                id="phoneCountryCode"
+                name="phoneCountryCode"
+                value={formData.phoneCountryCode}
+                onChange={handleChange}
+                className="w-[140px] shrink-0 px-3 py-3 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all duration-200 outline-none bg-gray-50/50 dark:bg-gray-800 dark:text-gray-100"
+                aria-label="Country calling code"
+              >
+                {countryCallingCodes.map(({ name, code }) => (
+                  <option key={code + name} value={code}>
+                    {code} {name}
+                  </option>
+                ))}
+              </select>
+              <input
+                type="tel"
+                id="phoneNumber"
+                name="phoneNumber"
+                value={formData.phoneNumber}
+                onChange={handleChange}
+                placeholder={
+                  language === 'hr' ? 'npr. 912 345 678' : 'e.g. 912 345 678'
+                }
+                className="flex-1 min-w-0 px-4 py-3 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-secondary focus:border-secondary transition-all duration-200 outline-none bg-gray-50/50 dark:bg-gray-800 dark:text-gray-100"
+              />
+            </div>
+          </div>
           <div>
             <label
               htmlFor="message"
-              className="block text-sm font-medium text-gray-700 mb-2"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
             >
               {t.contact.form.message}
             </label>

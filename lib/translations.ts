@@ -168,12 +168,19 @@ export const translations = {
     portfolio: {
       title: 'Reference',
       text: 'Uskoro će biti dostupne reference projekata.',
+      travelBlog: {
+        projectTitle: 'Travel Tales – putnički blog',
+        heroCaption: 'Hero sekcija',
+        featuredCaption: 'Featured Adventures',
+        contactCaption: 'Kontakt forma',
+      },
     },
     contact: {
       title: 'Kontakt',
       form: {
-        name: 'Ime',
+        fullName: 'Puno ime',
         email: 'Email',
+        phone: 'Broj telefona',
         message: 'Poruka',
         submit: 'Pošalji',
       },
@@ -349,12 +356,19 @@ export const translations = {
     portfolio: {
       title: 'Portfolio',
       text: 'Portfolio examples will be available soon.',
+      travelBlog: {
+        projectTitle: 'Travel Tales – travel blog',
+        heroCaption: 'Hero section',
+        featuredCaption: 'Featured Adventures',
+        contactCaption: 'Contact form',
+      },
     },
     contact: {
       title: 'Contact',
       form: {
-        name: 'Name',
+        fullName: 'Full Name',
         email: 'Email',
+        phone: 'Phone Number',
         message: 'Message',
         submit: 'Send',
       },

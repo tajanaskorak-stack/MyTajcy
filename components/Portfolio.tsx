@@ -1,10 +1,18 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
+
+const travelBlogImages = [
+  { src: '/Screenshot 2026-01-28 133558.png', key: 'hero' },
+  { src: '/Screenshot 2026-01-28 135521.png', key: 'featured' },
+  { src: '/Screenshot 2026-02-03 215435.png', key: 'contact' },
+] as const;
 
 export default function Portfolio() {
   const { t } = useLanguage();
+  const tb = t.portfolio.travelBlog;
 
   return (
     <section id="portfolio" className="py-20 md:py-32 bg-white dark:bg-black">
@@ -17,8 +25,46 @@ export default function Portfolio() {
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 mx-auto rounded-full"></div>
         </div>
-        <div className="text-center">
-          <p className="text-xl text-gray-600 dark:text-gray-400 font-light">{t.portfolio.text}</p>
+        <p className="text-center text-xl text-gray-600 dark:text-gray-400 font-light mb-12">
+          {t.portfolio.text}
+        </p>
+
+        {/* Last project: Travel Tales – travel blog */}
+        <div className="mt-16">
+          <h3 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-gray-100 mb-8 text-center">
+            {tb.projectTitle}
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {travelBlogImages.map(({ src, key }) => (
+              <article
+                key={key}
+                className="rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-lg bg-white dark:bg-gray-900"
+              >
+                <div className="aspect-[4/3] relative bg-gray-100 dark:bg-gray-800">
+                  <Image
+                    src={src}
+                    alt={
+                      key === 'hero'
+                        ? tb.heroCaption
+                        : key === 'featured'
+                          ? tb.featuredCaption
+                          : tb.contactCaption
+                    }
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                </div>
+                <p className="p-4 text-sm font-medium text-gray-600 dark:text-gray-400 text-center">
+                  {key === 'hero'
+                    ? tb.heroCaption
+                    : key === 'featured'
+                      ? tb.featuredCaption
+                      : tb.contactCaption}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
