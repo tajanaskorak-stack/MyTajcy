@@ -8,6 +8,7 @@ import { Language } from '@/lib/translations';
 export default function Header() {
   const { t, language, setLanguage } = useLanguage();
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const scrollToSection = (id: string) => {
@@ -15,6 +16,7 @@ export default function Header() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       setIsServicesOpen(false);
+      setIsMobileMenuOpen(false);
     }
   };
 
@@ -32,6 +34,16 @@ export default function Header() {
     };
   }, []);
 
+  // Close mobile menu on resize to desktop
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const handler = () => {
+      if (mq.matches) setIsMobileMenuOpen(false);
+    };
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
   const services = [
     { id: 'webdev', icon: '•', title: t.services.webdev.title },
     { id: 'maintenance', icon: '•', title: t.services.maintenance.title },
@@ -46,19 +58,19 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 md:h-24">
+        <div className="flex items-center justify-between h-16 sm:h-20 md:h-24">
           {/* Logo – modern signature style, slightly larger */}
           <Link
             href="/"
-            className="flex-shrink-0 font-signature text-2xl md:text-3xl font-normal tracking-[0.02em] focus:outline-none focus:ring-2 focus:ring-purple-500 rounded-lg"
+            className="flex-shrink-0 font-signature text-xl sm:text-2xl md:text-3xl font-normal tracking-[0.02em] focus:outline-none focus:ring-2 focus:ring-purple-500 rounded-lg"
           >
             <span className="bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 bg-clip-text text-transparent">
               MyTajcy
             </span>
           </Link>
 
-          {/* Navigation */}
-          <nav className="hidden md:flex items-center space-x-10 flex-1 justify-center">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8 lg:space-x-10 flex-1 justify-center">
             <a
               href="#about"
               onClick={(e) => {
@@ -157,33 +169,59 @@ export default function Header() {
             </a>
           </nav>
 
-          {/* Language Switcher */}
-          <div className="flex items-center border border-gray-200 dark:border-gray-700 rounded-lg p-1 bg-white/50 dark:bg-gray-900/50">
+          {/* Language + Hamburger (mobile) */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center border border-gray-200 dark:border-gray-700 rounded-lg p-1 bg-white/50 dark:bg-gray-900/50">
+              <button
+                onClick={() => setLanguage('hr')}
+                className={`px-2.5 sm:px-3 py-1.5 rounded-md text-xs sm:text-sm font-medium transition-all duration-200 ${
+                  language === 'hr'
+                    ? 'bg-primary text-white shadow-sm'
+                    : 'text-gray-600 hover:text-primary'
+                }`}
+              >
+                HR
+              </button>
+              <button
+                onClick={() => setLanguage('en')}
+                className={`px-2.5 sm:px-3 py-1.5 rounded-md text-xs sm:text-sm font-medium transition-all duration-200 ${
+                  language === 'en'
+                    ? 'bg-primary text-white shadow-sm'
+                    : 'text-gray-600 hover:text-primary'
+                }`}
+              >
+                EN
+              </button>
+            </div>
+            {/* Hamburger – mobile only */}
             <button
-              onClick={() => setLanguage('hr')}
-              className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 ${
-                language === 'hr'
-                  ? 'bg-primary text-white shadow-sm'
-                  : 'text-gray-600 hover:text-primary'
-              }`}
+              type="button"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500 min-h-[44px] min-w-[44px] flex items-center justify-center"
+              aria-expanded={isMobileMenuOpen}
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             >
-              HR
-            </button>
-            <button
-              onClick={() => setLanguage('en')}
-              className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 ${
-                language === 'en'
-                  ? 'bg-primary text-white shadow-sm'
-                  : 'text-gray-600 hover:text-primary'
-              }`}
-            >
-              EN
+              {isMobileMenuOpen ? (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        <nav className="md:hidden pb-4 pt-2 border-t border-gray-200 dark:border-gray-700 mt-2">
+        {/* Mobile Navigation – collapsible */}
+        <nav
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${
+            isMobileMenuOpen ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0'
+          }`}
+          aria-hidden={!isMobileMenuOpen}
+        >
+          <div className="pb-4 pt-2 border-t border-gray-200 dark:border-gray-700 mt-2">
           <div className="flex flex-col space-y-2">
             <a
               href="#about"
@@ -191,7 +229,7 @@ export default function Header() {
                 e.preventDefault();
                 scrollToSection('about');
               }}
-              className="text-gray-700 hover:text-secondary transition-colors duration-200 font-medium text-sm py-1"
+              className="text-gray-700 dark:text-gray-300 hover:text-secondary transition-colors duration-200 font-medium text-sm py-2.5 block"
             >
               {t.nav.about}
             </a>
@@ -200,7 +238,7 @@ export default function Header() {
             <div>
               <button
                 onClick={() => setIsServicesOpen(!isServicesOpen)}
-                className="w-full text-left text-gray-700 dark:text-gray-300 hover:text-secondary transition-colors duration-200 font-medium text-sm py-1 flex items-center justify-between"
+                className="w-full text-left text-gray-700 dark:text-gray-300 hover:text-secondary transition-colors duration-200 font-medium text-sm py-2.5 flex items-center justify-between"
               >
                 {t.nav.services}
                 <svg
@@ -218,7 +256,7 @@ export default function Header() {
                     <button
                       key={service.id}
                       onClick={() => scrollToSection(service.id)}
-                      className="w-full text-left text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-200 text-sm py-1.5 flex items-center gap-2"
+                      className="w-full text-left text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-200 text-sm py-2.5 flex items-center gap-2 min-h-[44px]"
                     >
                       <span className="text-lg">{service.icon}</span>
                       <span>{service.title}</span>
@@ -230,7 +268,7 @@ export default function Header() {
 
             <Link
               href="/services"
-              className="text-gray-700 dark:text-gray-300 hover:text-secondary transition-colors duration-200 font-medium text-sm py-1"
+              className="text-gray-700 dark:text-gray-300 hover:text-secondary transition-colors duration-200 font-medium text-sm py-2.5 block"
             >
               {t.nav.pricing}
             </Link>
@@ -240,7 +278,7 @@ export default function Header() {
                 e.preventDefault();
                 scrollToSection('portfolio');
               }}
-              className="text-gray-700 dark:text-gray-300 hover:text-secondary transition-colors duration-200 font-medium text-sm py-1"
+              className="text-gray-700 dark:text-gray-300 hover:text-secondary transition-colors duration-200 font-medium text-sm py-2.5 block"
             >
               {t.nav.portfolio}
             </a>
@@ -250,10 +288,11 @@ export default function Header() {
                 e.preventDefault();
                 scrollToSection('contact');
               }}
-              className="text-gray-700 dark:text-gray-300 hover:text-secondary transition-colors duration-200 font-medium text-sm py-1"
+              className="text-gray-700 dark:text-gray-300 hover:text-secondary transition-colors duration-200 font-medium text-sm py-2.5 block"
             >
               {t.nav.contact}
             </a>
+          </div>
           </div>
         </nav>
       </div>

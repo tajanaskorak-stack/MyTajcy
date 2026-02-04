@@ -64,7 +64,7 @@ const IconCustom = () => (
 );
 
 // Price badge: circle with € + number only (like reference image).
-// Wrapper aligns all prices in the same column (fixed-width right-aligned cell).
+// Wrapper aligns all prices in the same column on desktop; stacks on mobile.
 const PRICE_COLUMN_MIN_WIDTH = '10rem'; // ~160px: fits "149 / 49" + € circle
 
 const PriceBadge = ({
@@ -75,12 +75,12 @@ const PriceBadge = ({
   showEuroCircle?: boolean;
 }) => (
   <div className="flex items-center gap-2 flex-shrink-0">
-    <span className="font-bold text-primary dark:text-gray-100 text-lg whitespace-nowrap">
+    <span className="font-bold text-primary dark:text-gray-100 text-base sm:text-lg whitespace-nowrap">
       {amount}
     </span>
     {showEuroCircle && (
       <div
-        className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center text-white font-bold text-lg shrink-0"
+        className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center text-white font-bold text-base sm:text-lg shrink-0"
         aria-hidden
       >
         €
@@ -89,11 +89,10 @@ const PriceBadge = ({
   </div>
 );
 
-// Wrapper so every price row uses the same horizontal column (right-aligned in fixed-width cell).
+// Wrapper: same row on sm+, fixed-width price column for alignment.
 const PriceCell = ({ children }: { children: React.ReactNode }) => (
   <div
-    className="flex flex-shrink-0 justify-end"
-    style={{ minWidth: PRICE_COLUMN_MIN_WIDTH }}
+    className="flex flex-shrink-0 justify-end w-full sm:w-auto sm:min-w-[10rem]"
   >
     {children}
   </div>
@@ -122,7 +121,7 @@ const ServiceIcon = ({
   return (
     <button
       onClick={onClick}
-      className={`group relative flex flex-col items-center justify-center p-4 md:p-6 rounded-2xl transition-all duration-500 transform hover:scale-[1.03] min-h-[140px] border ${
+      className={`group relative flex flex-col items-center justify-center p-3 sm:p-4 md:p-6 rounded-2xl transition-all duration-500 transform hover:scale-[1.03] min-h-[100px] sm:min-h-[120px] md:min-h-[140px] border ${
         isActive
           ? 'scale-[1.03] border-transparent'
           : 'border-purple-100/80 dark:border-gray-600/80 hover:border-purple-300/80 dark:hover:border-gray-500 shadow-lg shadow-purple-900/5 dark:shadow-black/30 hover:shadow-xl hover:shadow-purple-500/10 dark:hover:shadow-purple-500/20'
@@ -237,10 +236,10 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-20 md:py-32 bg-gradient-to-b from-purple-50 via-pink-50 to-indigo-50 dark:from-black dark:via-gray-900 dark:to-black">
+    <section id="services" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-gradient-to-b from-purple-50 via-pink-50 to-indigo-50 dark:from-black dark:via-gray-900 dark:to-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+        <div className="text-center mb-10 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 tracking-tight">
             <span className="bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 bg-clip-text text-transparent">
               {t.services.title}
             </span>
@@ -271,12 +270,12 @@ export default function Services() {
 
         <div className="space-y-10">
           {/* Website Development */}
-          <div 
+          <div
             id="webdev"
-            className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 md:p-10 hover:shadow-2xl transition-all duration-300 border-2 border-transparent bg-gradient-to-br from-white to-purple-50/30 dark:from-gray-900 dark:to-gray-800 hover:border-purple-200 dark:hover:border-gray-600 scroll-mt-8"
+            className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-5 sm:p-6 md:p-8 lg:p-10 hover:shadow-2xl transition-all duration-300 border-2 border-transparent bg-gradient-to-br from-white to-purple-50/30 dark:from-gray-900 dark:to-gray-800 hover:border-purple-200 dark:hover:border-gray-600 scroll-mt-6 sm:scroll-mt-8"
           >
-            <div className="flex items-center gap-4 mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
-              <h3 className="text-2xl md:text-3xl font-bold text-primary dark:text-gray-100">
+            <div className="flex items-center gap-4 mb-4 sm:mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-primary dark:text-gray-100">
                 {t.services.webdev.title}
               </h3>
             </div>
@@ -287,8 +286,8 @@ export default function Services() {
             <div className="space-y-6">
               {/* Basic Web */}
               <div className="pb-8 border-b border-gray-100 last:border-0">
-                <div className="flex items-start justify-between gap-4 mb-3">
-                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4 mb-3">
+                  <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
                     {t.services.webdev.basic.title}
                   </h4>
                   <PriceCell>
@@ -308,8 +307,8 @@ export default function Services() {
 
               {/* Standard Web */}
               <div className="pb-8 border-b border-gray-100 last:border-0">
-                <div className="flex items-start justify-between gap-4 mb-3">
-                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4 mb-3">
+                  <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
                     {t.services.webdev.standard.title}
                   </h4>
                   <PriceCell>
@@ -329,8 +328,8 @@ export default function Services() {
 
               {/* Premium Web */}
               <div>
-                <div className="flex items-start justify-between gap-4 mb-3">
-                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4 mb-3">
+                  <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
                     {t.services.webdev.premium.title}
                   </h4>
                   <PriceCell>
@@ -351,12 +350,12 @@ export default function Services() {
           </div>
 
           {/* Website Maintenance */}
-          <div 
+          <div
             id="maintenance"
-            className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 md:p-10 hover:shadow-2xl transition-all duration-300 border-2 border-transparent bg-gradient-to-br from-white to-purple-50/30 dark:from-gray-900 dark:to-gray-800 hover:border-purple-200 dark:hover:border-gray-600 scroll-mt-8"
+            className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-5 sm:p-6 md:p-8 lg:p-10 hover:shadow-2xl transition-all duration-300 border-2 border-transparent bg-gradient-to-br from-white to-purple-50/30 dark:from-gray-900 dark:to-gray-800 hover:border-purple-200 dark:hover:border-gray-600 scroll-mt-6 sm:scroll-mt-8"
           >
-            <div className="flex items-start justify-between gap-4 mb-4">
-              <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4 mb-4">
+              <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
                 {t.services.maintenance.title}
               </h4>
               <PriceCell>
@@ -374,14 +373,14 @@ export default function Services() {
           </div>
 
           {/* Online Offers & Booking */}
-          <div 
+          <div
             id="offers"
-            className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 md:p-10 hover:shadow-2xl transition-all duration-300 border-2 border-transparent bg-gradient-to-br from-white to-purple-50/30 dark:from-gray-900 dark:to-gray-800 hover:border-purple-200 dark:hover:border-gray-600 scroll-mt-8"
+            className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-5 sm:p-6 md:p-8 lg:p-10 hover:shadow-2xl transition-all duration-300 border-2 border-transparent bg-gradient-to-br from-white to-purple-50/30 dark:from-gray-900 dark:to-gray-800 hover:border-purple-200 dark:hover:border-gray-600 scroll-mt-6 sm:scroll-mt-8"
           >
             <div className="space-y-6">
               <div className="pb-8 border-b border-gray-100">
-<div className="flex items-start justify-between gap-4 mb-4">
-                <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4 mb-4">
+                <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
                   {t.services.offers.title}
                 </h4>
                 <PriceCell>
@@ -391,8 +390,8 @@ export default function Services() {
                 <p className="text-gray-600 dark:text-gray-400 mb-5 text-base md:text-lg font-light">{t.services.offers.desc}</p>
               </div>
               <div>
-<div className="flex items-start justify-between gap-4 mb-4">
-                <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4 mb-4">
+                <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
                   {t.services.booking.title}
                 </h4>
                 <PriceCell>
@@ -429,12 +428,12 @@ export default function Services() {
           </div>
 
           {/* Social Media Management */}
-          <div 
+          <div
             id="social"
-            className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 md:p-10 hover:shadow-2xl transition-all duration-300 border-2 border-transparent bg-gradient-to-br from-white to-purple-50/30 dark:from-gray-900 dark:to-gray-800 hover:border-purple-200 dark:hover:border-gray-600 scroll-mt-8"
+            className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-5 sm:p-6 md:p-8 lg:p-10 hover:shadow-2xl transition-all duration-300 border-2 border-transparent bg-gradient-to-br from-white to-purple-50/30 dark:from-gray-900 dark:to-gray-800 hover:border-purple-200 dark:hover:border-gray-600 scroll-mt-6 sm:scroll-mt-8"
           >
-            <div className="flex items-center gap-4 mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
-              <h3 className="text-2xl md:text-3xl font-bold text-primary dark:text-gray-100">
+            <div className="flex items-center gap-4 mb-4 sm:mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-primary dark:text-gray-100">
                 {t.services.social.sectionTitle || 'SOCIAL MEDIA'}
               </h3>
             </div>
@@ -458,8 +457,8 @@ export default function Services() {
                 </ul>
               </div>
               <div className="pb-8 border-b border-gray-100">
-                <div className="flex items-start justify-between gap-4 mb-4">
-                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4 mb-4">
+                  <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
                     {`${t.services.social.sectionTitle || 'SOCIAL MEDIA'} ${t.services.social.standard.title}`}
                   </h4>
                   <PriceCell>
@@ -476,8 +475,8 @@ export default function Services() {
                 </ul>
               </div>
               <div>
-                <div className="flex items-start justify-between gap-4 mb-4">
-                  <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4 mb-4">
+                  <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
                     {`${t.services.social.sectionTitle || 'SOCIAL MEDIA'} ${t.services.social.premium.title}`}
                   </h4>
                   <PriceCell>
@@ -508,8 +507,8 @@ export default function Services() {
             </div>
             <div className="space-y-8">
               <div className="pb-8 border-b border-gray-100">
-<div className="flex items-start justify-between gap-4 mb-4">
-                <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4 mb-4">
+                <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
                   {t.services.newsletter.mini.title}
                 </h4>
                 <PriceCell>
@@ -526,8 +525,8 @@ export default function Services() {
                 </ul>
               </div>
               <div className="pb-8 border-b border-gray-100">
-<div className="flex items-start justify-between gap-4 mb-4">
-                <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4 mb-4">
+                <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
                   {t.services.newsletter.standard.title}
                 </h4>
                 <PriceCell>
@@ -565,12 +564,12 @@ export default function Services() {
           </div>
 
           {/* Custom Requests */}
-          <div 
+          <div
             id="custom"
-            className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8 md:p-10 hover:shadow-2xl transition-all duration-300 border-2 border-transparent bg-gradient-to-br from-white to-purple-50/30 dark:from-gray-900 dark:to-gray-800 hover:border-purple-200 dark:hover:border-gray-600 scroll-mt-8"
+            className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-5 sm:p-6 md:p-8 lg:p-10 hover:shadow-2xl transition-all duration-300 border-2 border-transparent bg-gradient-to-br from-white to-purple-50/30 dark:from-gray-900 dark:to-gray-800 hover:border-purple-200 dark:hover:border-gray-600 scroll-mt-6 sm:scroll-mt-8"
           >
-            <div className="flex items-start justify-between gap-4 mb-4">
-              <h4 className="text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4 mb-4">
+              <h4 className="text-lg sm:text-xl md:text-2xl font-bold text-primary dark:text-gray-100 min-w-0 flex-1">
                 {t.services.custom.title}
               </h4>
               <PriceCell>

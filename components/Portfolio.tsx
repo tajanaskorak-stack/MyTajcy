@@ -15,26 +15,26 @@ export default function Portfolio() {
   const tb = t.portfolio.travelBlog;
 
   return (
-    <section id="portfolio" className="py-20 md:py-32 bg-white dark:bg-black">
+    <section id="portfolio" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-white dark:bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+        <div className="text-center mb-10 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 tracking-tight">
             <span className="bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 bg-clip-text text-transparent">
               {t.portfolio.title}
             </span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 mx-auto rounded-full"></div>
         </div>
-        <p className="text-center text-xl text-gray-600 dark:text-gray-400 font-light mb-12">
+        <p className="text-center text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 font-light mb-8 sm:mb-12 px-2">
           {t.portfolio.text}
         </p>
 
         {/* Last project: Travel Tales – travel blog */}
-        <div className="mt-16">
-          <h3 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-gray-100 mb-8 text-center">
+        <div className="mt-10 sm:mt-16">
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-800 dark:text-gray-100 mb-6 sm:mb-8 text-center px-2">
             {tb.projectTitle}
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {travelBlogImages.map(({ src, key }) => (
               <article
                 key={key}
