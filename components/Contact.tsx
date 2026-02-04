@@ -19,8 +19,30 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fullName: formData.fullName.trim(),
+          email: formData.email.trim(),
+          phoneCountryCode: formData.phoneCountryCode,
+          phoneNumber: formData.phoneNumber.trim(),
+          message: formData.message.trim(),
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        const msg =
+          data?.error ||
+          (language === 'hr'
+            ? 'Poruka nije poslana. Pokušajte ponovno ili nas kontaktirajte izravno na mytajcy@gmail.com.'
+            : 'Message could not be sent. Please try again or email us at mytajcy@gmail.com.');
+        alert(msg);
+        return;
+      }
+
       alert(
         language === 'hr'
           ? 'Hvala vam na poruci! Javit ću vam se uskoro.'
@@ -33,8 +55,9 @@ export default function Contact() {
         phoneNumber: '',
         message: '',
       });
+    } finally {
       setIsSubmitting(false);
-    }, 500);
+    }
   };
 
   const handleChange = (
