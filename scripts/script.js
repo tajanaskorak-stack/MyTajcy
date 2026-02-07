@@ -253,7 +253,7 @@ const translations = {
         price: 'Price: from €80 per offer',
       },
       booking: {
-        title: 'Creation of booking forms',
+        title: 'CREATION OF BOOKING FORMS',
         desc:
           'Simple and functional booking forms (appointments, services, accommodations, inquiries, or events). Forms are customized to your business, user-friendly, and easy to manage (email notifications, structured data).',
         price: 'Price: €100',

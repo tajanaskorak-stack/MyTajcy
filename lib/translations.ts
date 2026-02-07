@@ -83,7 +83,7 @@ export const translations = {
         priceShort: '60',
       },
       booking: {
-        title: 'Izrada rezervacijskih obrazaca',
+        title: 'IZRADA REZERVACIJSKIH OBRACA',
         desc:
           'Izrada jednostavnih i funkcionalnih rezervacijskih obrazaca (rezervacije termina, usluga, smještaja, upita ili događanja). Obrasci su prilagođeni vašem poslovanju, pregledni za korisnike i jednostavni za upravljanje (obavijesti na email, jasno strukturirani podaci).',
         price: 'Cijena: 90 €',
@@ -177,6 +177,9 @@ export const translations = {
     },
     contact: {
       title: 'Kontakt',
+      reachMe: 'Kontaktirajte me izravno',
+      numberLabel: 'Broj:',
+      emailLabel: 'Email:',
       form: {
         fullName: 'Puno ime',
         email: 'Email',
@@ -187,6 +190,8 @@ export const translations = {
     },
     footer: {
       text: '© 2024 MyTajcy. Sva prava pridržana.',
+      phoneLabel: 'Tel.',
+      emailLabel: 'Email',
     },
   },
   en: {
@@ -271,7 +276,7 @@ export const translations = {
         priceShort: '60',
       },
       booking: {
-        title: 'Creation of booking forms',
+        title: 'CREATION OF BOOKING FORMS',
         desc:
           'Simple and functional booking forms (appointments, services, accommodations, inquiries or events). Forms are customized to your business, user-friendly, and easy to manage (email notifications, structured data).',
         price: 'Price: 90 €',
@@ -365,6 +370,9 @@ export const translations = {
     },
     contact: {
       title: 'Contact',
+      reachMe: 'Reach me directly',
+      numberLabel: 'Number:',
+      emailLabel: 'Email:',
       form: {
         fullName: 'Full Name',
         email: 'Email',
@@ -375,6 +383,8 @@ export const translations = {
     },
     footer: {
       text: '© 2024 MyTajcy. All rights reserved.',
+      phoneLabel: 'Phone',
+      emailLabel: 'Email',
     },
   },
 };

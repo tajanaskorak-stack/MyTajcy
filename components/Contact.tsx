@@ -126,7 +126,6 @@ export default function Contact() {
             >
               {t.contact.form.phone}
             </label>
-            {/* Stack on very small screens, row on sm+ */}
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
               <select
                 id="phoneCountryCode"
@@ -184,6 +183,21 @@ export default function Contact() {
               : t.contact.form.submit}
           </button>
         </form>
+        {/* Phone + email buttons right below the contact form, stacked */}
+        <div className="mt-10 sm:mt-12 flex flex-col items-center gap-3">
+          <a
+            href="tel:+385989679485"
+            className="w-full sm:max-w-md inline-flex items-center justify-center gap-2 min-h-[44px] px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-sm sm:text-base shadow-md hover:from-purple-700 hover:to-pink-700 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+          >
+            {t.contact.numberLabel} +385 98/967-9485
+          </a>
+          <a
+            href="mailto:mytajcy@gmail.com"
+            className="w-full sm:max-w-md inline-flex items-center justify-center gap-2 min-h-[44px] px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-sm sm:text-base shadow-md hover:from-purple-700 hover:to-pink-700 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+          >
+            {t.contact.emailLabel} mytajcy@gmail.com
+          </a>
+        </div>
       </div>
     </section>
   );

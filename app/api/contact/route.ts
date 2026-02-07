@@ -35,11 +35,12 @@ export async function POST(request: Request) {
     }
 
     const { fullName, email, phoneCountryCode, phoneNumber, message } = body;
+    // Vercel: set GMAIL_APP_PASSWORD and optionally GMAIL_USER in Project → Settings → Environment Variables (Production + Preview).
     const gmailUser = process.env.GMAIL_USER || RECIPIENT_EMAIL;
     const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
 
     if (!gmailAppPassword) {
-      console.error('GMAIL_APP_PASSWORD is not set. Set it in .env.local for contact form to work.');
+      console.error('GMAIL_APP_PASSWORD is not set. Set in .env.local (local) or Vercel env vars (production).');
       return NextResponse.json(
         { error: 'Email is not configured. Please try again later.' },
         { status: 503 }
@@ -94,7 +95,9 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error('Contact API error:', err);
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error('Contact API error:', msg);
+    // Invalid login / App Password issues show up in Vercel logs (e.g. "Invalid login")
     return NextResponse.json(
       { error: 'Failed to send message. Please try again or email directly.' },
       { status: 500 }
